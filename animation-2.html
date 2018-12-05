@@ -40,9 +40,10 @@
 
     $('.start').on('click', ()=>{
       var i = 0;
+      startAnimate(i%2)
       setInterval(function() {
-        startAnimate(i%2)
         i++
+        startAnimate(i%2)
       }, 2000)
     })
     
