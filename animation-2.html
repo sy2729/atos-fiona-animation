@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+
+  <div id="app">
+    <h2 class="title relative">You're All Set!</h2>
+    <div class="bg bg-stars absolute">
+    </div>
+    <div class="small-card-wrap absolute b-center">
+        <img class="absolute " src="./assets/small-card.png" alt="">
+        <img class="absolute card-front" src="./assets/small-card.png" alt="">
+    </div>
+
+
+
+    <div class="bg bg-wave absolute">
+      <img src="./assets/bg.png" alt="">
+    </div>
+  </div>
+
+  <button class="start">Start</button>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    var $app = $('#app')
+    var $bgStars = $('.bg-stars')
+    var $cardWrap = $('.small-card-wrap')
+
+    $('.start').on('click', ()=>{
+      var i = 0;
+      setInterval(function() {
+        startAnimate(i%2)
+        i++
+      }, 2000)
+    })
+    
+
+
+
+
+    var bgIcon = [
+      {
+        type:'times',
+        color: '#FE5365',
+        size: 16
+      },
+      {
+        type:'times',
+        color: '#FE5365',
+        size: 20
+      },
+      {
+        type:'times',
+        color: '#FE5365',
+        size: 16
+      },
+      {
+        type:'heart',
+        color: '#3BE9BD',
+        size: 17
+      },
+      {
+        type:'heart',
+        color: '#3BE9BD',
+        size: 15
+      },
+      {
+        type:'heart',
+        color: '#3BE9BD'
+      },
+      {
+        type:'heart',
+        color: '#FE5365'
+      },
+    ]
+
+    function generate() {
+      bgIcon.forEach((i)=> {
+        let el = $('<i></i>').addClass(`fas fa-${i.type} animated zoomIn`).css({'color':i.color, 'font-size': `${i.size||24}px`});
+        let position = randomPosition($app.width()/2, $app.height()/2)
+        el.css({'top': position.y, 'left': position.x})
+        $bgStars.append(el)
+      })
+    }
+    function randomPosition(width, height) {
+      function randomPositive() {
+       return Math.random() - 0.5 > 0;
+      }
+      return {
+        x: randomPositive()?Math.floor(Math.random()* width):-Math.floor(Math.random()* width),
+        y: randomPositive()?Math.floor(Math.random()* height):-Math.floor(Math.random()* height),
+      }
+    };
+    
+    function addNewCard() {
+      var cardUrl = './assets/small-card.png'
+      var card = $('<img>').attr('src', cardUrl).addClass('absolute')
+      $cardWrap.prepend(card);
+      $('.small-card-wrap img').last().addClass('card-front');
+    }
+
+    function clearOldStar() {
+      $bgStars.html('')
+    }
+
+    function startAnimate(direction) {
+      clearOldStar()
+      generate()
+      var lastChild = $('.small-card-wrap img').last().addClass('card-front');
+      direction===0?lastChild.addClass('slide-right'):lastChild.addClass('slide-left')
+      lastChild.one('transitionend webkitTransitionEnd MSTransitionEnd', (e)=> {
+          lastChild.remove()
+          addNewCard()
+      })
+    }
+  </script>
+
+</body>
+</html>

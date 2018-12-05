@@ -6,8 +6,8 @@
   position: relative
   margin: 30px auto
   overflow: hidden
-  background: #f4f4f4
-  box-shadow: 2px 2px 5px rgba(100, 100, 100, 0.2)
+  background: #FFFFFF
+  box-shadow: 2px 2px 5px rgba(100, 100, 100, 0.2), -2px -2px 5px rgba(100, 100, 100, 0.1)
 
   // .bg
   //   position: absolute
@@ -22,9 +22,6 @@
 
   .circle-wrap
     position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
     display: flex
     flex-direction: column
     justify-content: center
@@ -103,3 +100,74 @@
   display: block
   margin: 20px auto
   text-transform: uppercase
+
+
+.small-card-wrap
+  width: 150px
+  background: red
+  z-index: 2
+
+  img
+    width: 100%
+    margin-top: -200px
+    transition: all 1s
+    transform-origin: bottom
+    &.card-front
+      transform: translateY(10%)
+    &.slide-right
+      opacity: 0
+      transform: translateX(50%) rotate(30deg)
+    &.slide-left
+      opacity: 0
+      transform: translateX(-50%) rotate(-30deg)
+  &::after
+    content: 'Swip right and right to explore you prefered jobs'
+    width: 200px
+    text-align: center
+    line-height: 1.5em
+    font-family: Arial, Helvetica, sans-serif
+    color: #4A4A4A
+    font-weight: bold
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translate(-50%, 120%)
+
+
+.bg
+  z-index: 1
+  width: 100%
+  &.bg-stars
+    height: 0
+    width: 0
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 1
+    i
+      position: absolute
+
+  &.bg-wave
+  bottom: 10%
+  height: 30%
+  img
+    width: 100%
+
+
+
+
+.b-center
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+.relative
+  position: relative
+.absolute
+  position: absolute
+.title
+  z-index: 2
+h2
+  color: #4A4A4A
+  margin: 40px 20px
+  font-weight: bold
+  font-family: Arial, Helvetica, sans-serif
