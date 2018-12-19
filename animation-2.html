@@ -31,6 +31,18 @@
   <button class="start">Start</button>
 
 
+  <!-- To be Deleted -->
+  <style>h1{text-align: center;}</style>
+  <div>
+    <h1>Swipe Card Effect</h1>
+    <img src="./assets/animation.gif" alt="" width="300px" style="display: block; margin: 0 auto;">
+  </div>
+  <div>
+    <h1>Loading Animation</h1>
+    <img src="./assets/loading.gif" alt="" width="300px" style="display: block; margin: 0 auto;">
+  </div>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script>
@@ -40,10 +52,9 @@
 
     $('.start').on('click', ()=>{
       var i = 0;
-      startAnimate(i%2)
       setInterval(function() {
-        i++
         startAnimate(i%2)
+        i++
       }, 2000)
     })
     
